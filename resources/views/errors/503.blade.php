@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Be right back.</div>
+                <div class="title">2222222222222222222 Be right back.</div>
             </div>
         </div>
     </body>
