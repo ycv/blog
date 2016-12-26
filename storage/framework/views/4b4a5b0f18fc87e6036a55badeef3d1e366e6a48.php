@@ -1,11 +1,10 @@
-@extends('layouts.home')
-@section('info')
-<title>{{Config::get('web.web_title')}} - {{Config::get('web.seo_title')}}</title>
-<meta name="keywords" content="{{Config::get('web.keywords')}}" />
-<meta name="description" content="{{Config::get('web.description')}}" />
-@endsection
+<?php $__env->startSection('info'); ?>
+<title><?php echo e(Config::get('web.web_title')); ?> - <?php echo e(Config::get('web.seo_title')); ?></title>
+<meta name="keywords" content="<?php echo e(Config::get('web.keywords')); ?>" />
+<meta name="description" content="<?php echo e(Config::get('web.description')); ?>" />
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="banner">
     <section class="box">
         <ul class="texts">
@@ -22,12 +21,12 @@
             <p><span>站长</span>推荐 Recommend</p>
         </h3>
         <ul>
-            @foreach($pics as $p)
+            <?php foreach($pics as $p): ?>
             <li>
-                <a href="{{url('a/'.$p->art_id)}}"  target="_blank"><img src="{{url($p->art_thumb)}}"></a>
-                <span>{{$p->art_title}}</span>
+                <a href="<?php echo e(url('a/'.$p->art_id)); ?>"  target="_blank"><img src="<?php echo e(url($p->art_thumb)); ?>"></a>
+                <span><?php echo e($p->art_title); ?></span>
             </li>
-            @endforeach
+            <?php endforeach; ?>
         </ul>
     </div>
 </div>
@@ -36,17 +35,18 @@
         <p>文章<span>推荐</span></p>
     </h2>
     <div class="bloglist left">
-        @foreach($data as $d)
-        <h3>{{$d->art_title}}</h3>
-        <figure><img src="{{url($d->art_thumb)}}"></figure>
+        <?php foreach($data as $d): ?>
+        <h3><?php echo e($d->art_title); ?></h3>
+        <figure><img src="<?php echo e(url($d->art_thumb)); ?>"></figure>
         <ul>
-            <p>{{$d->art_description}}</p>
-            <a title="{{$d->art_title}}" href="{{url('a/'.$d->art_id)}}" target="_blank" class="readmore">阅读全文>></a>
+            <p><?php echo e($d->art_description); ?></p>
+            <a title="<?php echo e($d->art_title); ?>" href="<?php echo e(url('a/'.$d->art_id)); ?>" target="_blank" class="readmore">阅读全文>></a>
         </ul>
-        <p class="dateview"><span>{{date('Y-m-d',$d->art_time)}}</span><span>作者：{{$d->art_editor}}</span></p>
-        @endforeach
+        <p class="dateview"><span><?php echo e(date('Y-m-d',$d->art_time)); ?></span><span>作者：<?php echo e($d->art_editor); ?></span></p>
+        <?php endforeach; ?>
         <div class="page">
-            {{$data->links()}}
+            <?php echo e($data->links()); ?>
+
         </div>
     </div>
     <aside class="right">
@@ -65,12 +65,13 @@
                 <p>友情<span>链接</span></p>
             </h3>
             <ul class="website">
-                @foreach($links as $l)
-                <li><a href="{{$l->link_url}}" target="_blank">{{$l->link_name}}</a></li>
-                @endforeach
+                <?php foreach($links as $l): ?>
+                <li><a href="<?php echo e($l->link_url); ?>" target="_blank"><?php echo e($l->link_name); ?></a></li>
+                <?php endforeach; ?>
             </ul>
         </div>
 
     </aside>
 </article>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
