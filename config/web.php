@@ -1,5 +1,5 @@
 <?php return array (
-  'web_title' => '后盾Blog系统',
+  'web_title' => 'infi-test',
   'web_count' => '百度统计',
   'web_status' => '0',
   'seo_title' => '后盾网 人人做后盾',
